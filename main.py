@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 import smtplib
 from email.message import EmailMessage
-from jobspy import scrape_jobs
+from python_jobspy import scrape_jobs
 import pandas as pd
 
 
