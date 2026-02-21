@@ -26,7 +26,7 @@ jobs:
           SENDER: ${{ secrets.SENDER }}
           APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
           RECEIVER: ${{ secrets.RECEIVER }}
-        run: python job_scraper.py
+        run: python main.py
 
       - name: Commit updated CSV
         run: |
