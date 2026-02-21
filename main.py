@@ -53,7 +53,7 @@ def run_job_scraper():
         location="Guildford, Surrey",
         distance=10,
         job_type="parttime",
-        results_wanted=20,
+        results_wanted=50,
         country_indeed="United Kingdom",
     )
 
@@ -80,7 +80,7 @@ def run_job_scraper():
 
     df = df[
         df["location"]
-        .str.contains("Guildford|Surrey", case=False, na=False)
+        .str.contains("Guildford", case=False, na=False)
     ]
 
     df = df.drop_duplicates(subset=["job_url"])
@@ -93,6 +93,9 @@ def run_job_scraper():
 
     # Detect new jobs
     new_jobs = df[~df["job_url"].isin(old_df["job_url"])]
+
+    # Merge old + new (never delete old)
+    updated_df = pd.concat([old_df, new_jobs]).drop_duplicates(subset=["job_url"])
 
     if not new_jobs.empty:
         print(f"\n🚨 {len(new_jobs)} NEW JOBS FOUND!\n")
@@ -109,7 +112,7 @@ def run_job_scraper():
         print("No new jobs found.")
 
     # Save updated file
-    df.to_csv(OUTPUT_FILE, index=False)
+    updated_df.to_csv(OUTPUT_FILE, index=False)
     print(f"Updated {OUTPUT_FILE}")
     print("Done.\n")
 
