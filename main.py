@@ -49,8 +49,8 @@ def run_job_scraper():
     jobs = scrape_jobs(
         site_name=["indeed", "linkedin", "zip_recruiter", "google"],
         search_term="Retail",
-        google_search_term="retail jobs near Guildford, Surrey",
-        location="Guildford, Surrey",
+        google_search_term="retail jobs near Enfield",
+        location="Enfield, GB",
         distance=10,
         job_type="parttime",
         results_wanted=50,
@@ -80,7 +80,7 @@ def run_job_scraper():
 
     df = df[
         df["location"]
-        .str.contains("Guildford", case=False, na=False)
+        .str.contains("Enfield", case=False, na=False)
     ]
 
     df = df.drop_duplicates(subset=["job_url"])
