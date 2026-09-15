@@ -25,7 +25,7 @@ def send_email_alert(new_jobs_df):
     RECEIVER = os.getenv("RECEIVER")
 
     msg = EmailMessage()
-    msg["Subject"] = f"{len(new_jobs_df)} New Retail Jobs Found"
+    msg["Subject"] = f"{len(new_jobs_df)} New Hospitality Jobs Found"
     msg["From"] = SENDER
     msg["To"] = RECEIVER
 
@@ -48,8 +48,8 @@ def run_job_scraper():
 
     jobs = scrape_jobs(
         site_name=["indeed", "linkedin", "zip_recruiter", "google"],
-        search_term="Retail",
-        google_search_term="retail jobs near Guildford, Surrey",
+        search_term="Hospitality",
+        google_search_term="hospitality jobs near Guildford, Surrey",
         location="Guildford, Surrey",
         distance=10,
         job_type="parttime",
